@@ -1,1 +1,1 @@
-Sobirjonov Shoxjaxon 
+Sobirjonov Shoxjaxon Murodjon o'g'li

@@ -8,5 +8,12 @@
 </head>
 <body>
     <h1>Bu Test view file </h1>
+
+    <form action="{{ route('contact')}}" method="POST">
+            <label>Name</label>
+            <input type="text" value="Name">
+
+            <button type="submit">Submit</button>
+    </form>
 </body>
 </html>

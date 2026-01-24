@@ -17,7 +17,7 @@ Route::post('contact', function(){
 
     return "post route";
 
-});
+})->name('contact');
 
 
 

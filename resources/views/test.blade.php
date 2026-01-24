@@ -15,5 +15,12 @@
 
             <button type="submit">Submit</button>
     </form>
+
+    <form action="{{ route('contact-post')}}" method="POST">
+            <label>Name</label>
+            <input type="text" value="Name">
+
+            <button type="submit">Submit</button>
+    </form>
 </body>
 </html>

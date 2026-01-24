@@ -20,6 +20,11 @@ Route::post('contact', function(){
 })->name('contact');
 
 
+Route::post('contact-posts', function(){
+
+    return "post route";
+
+})->name('contact-posts');
 
 
 Route::get('/birinchi', function(){

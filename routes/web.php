@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PhotoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -7,43 +8,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/user', [UserController::class, 'index'])->name('user.index');
-Route::get('/test', function(){
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/create', [UserController::class, 'create']);
+Route::get('/users/{user}',[UserController::class, 'show']);
+Route::get('/users/{user_id}/edit',[UserController::class, 'edit']);
 
-    return view('test');
-});
-
-Route::post('contact', function(){
-
-    return "post route";
-
-})->name('contact');
+Route::resource('photos', PhotoController::class);
 
 
-Route::post('contact-posts', function(){
-
-    return "post route";
-
-})->name('contact-posts');
 
 
-Route::get('/birinchi', function(){
 
-    return "Birinchi";
-});
-
-Route::get('/ikkinchi', function(){
-
-    return "Ikkinchi";
-});
-
-Route::redirect('/birinchi', '/ikkinchi');
-
-
-Route::get('/users/{id?}', function($id = null){
-
-    return "Bu bizning $id userimiz";
-})->name('userlar');
 
 
 

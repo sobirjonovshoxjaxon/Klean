@@ -9,7 +9,8 @@ Route::get('/', function () {
 });
 
 Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/create', [UserController::class, 'create']);
+Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
+Route::post('/users/store',[UserController::class, 'store'])->name('user.store');
 Route::get('/users/{user}',[UserController::class, 'show']);
 Route::get('/users/{user_id}/edit',[UserController::class, 'edit']);
 

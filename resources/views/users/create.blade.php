@@ -9,6 +9,13 @@
 <body>
     <h1>Create New User Page</h1>
 
-    
+    <form action="{{ route('user.store')}}" method="POST">
+        @csrf 
+
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="email" placeholder="Email">
+
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>

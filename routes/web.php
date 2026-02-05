@@ -1,12 +1,20 @@
 <?php
 
-
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/index',[PageController::class, 'index'])->name('index.page');
+Route::get('/about',[PageController::class, 'about'])->name('about.page');
+Route::get('/blog',[PageController::class, 'blog'])->name('blog.page');
+Route::get('/blog/detail',[PageController::class, 'blogDetail'])->name('blogdetail.page');
+Route::get('/contact',[PageController::class, 'contact'])->name('contact.page');
+Route::get('/service',[PageController::class, 'service'])->name('service.page');
+Route::get('/project',[PageController::class, 'project'])->name('project.page');
 
 // Route::get('/users', [UserController::class, 'index']);
 // Route::get('/users/create', [UserController::class, 'create'])->name('user.create');

@@ -21,7 +21,7 @@ class UserController extends Controller
         return view('users.show')->with('user_id', $user)->with('name', 'Shoxjaxon');
     }
 
-    public function create(){
+    public function create(){   
 
         return view('users.create');
     }

@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index',[PageController::class, 'index'])->name('index.page');
+Route::get('/',[PageController::class, 'index'])->name('index.page');
 Route::get('/about',[PageController::class, 'about'])->name('about.page');
 Route::get('/blog',[PageController::class, 'blog'])->name('blog.page');
 Route::get('/blog/detail',[PageController::class, 'blogDetail'])->name('blogdetail.page');

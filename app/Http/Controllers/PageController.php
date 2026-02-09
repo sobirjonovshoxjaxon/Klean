@@ -14,4 +14,24 @@ class PageController extends Controller
     public function about(){
         return view('about');
     }
+
+    public function blog(){
+        return view('blog');
+    }
+
+    public function blogDetail(){
+        return view('blogdetail');
+    }
+
+    public function contact(){
+        return view('contact');
+    }
+
+    public function service(){
+        return view('service');
+    }
+
+    public function project(){
+        return view('project');
+    }
 }

@@ -1,3 +1,7 @@
+<?php 
+    $pageName = "Contact";
+?>
+
 @extends('components.main')
 @section('content')
 

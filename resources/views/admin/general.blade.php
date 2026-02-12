@@ -70,7 +70,7 @@
             </li>
 
             <li class="dropdown">
-              <a href="index.html" class="nav-link"><i data-feather="monitor"></i><span>Blog Table</span></a>
+              <a href="{{ route('posts.index')}}" class="nav-link"><i data-feather="monitor"></i><span>Blog Table</span></a>
             </li>  
         </aside>
       </div>

@@ -89,7 +89,7 @@
                             </div>
                             <a href="{{ route('contact.page')}}" class="nav-item nav-link">Contact</a>
                         </div>
-                        <a href="" class="btn btn-primary mr-3 d-none d-lg-block">Get A Quote</a>
+                        <a href="{{ route('login.page')}}" class="btn btn-primary mr-3 d-none d-lg-block">Login</a>
                     </div>
                 </nav>
             </div>

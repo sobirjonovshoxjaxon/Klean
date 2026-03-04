@@ -20,6 +20,7 @@ Route::get('/service',[PageController::class, 'service'])->name('service.page');
 Route::get('/project',[PageController::class, 'project'])->name('project.page');
 
 //AdminController 
+Route::post('/enter/adminpanel',[AdminController::class, 'IsUser'])->name('is_user');
 Route::get('/admin/index',[AdminController::class, 'adminIndex'])->name('admin.index');
 Route::get('/admin/login',[AdminController::class, 'loginPage'])->name('login.page');
 Route::get('/logout',[AdminController::class, 'logout'])->name('logout.page');

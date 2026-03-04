@@ -15,6 +15,9 @@
   <!-- Custom style CSS -->
   <link rel="stylesheet" href="{{ asset ('admin/css/custom.css')}}">
   <link rel='shortcut icon' type='image/x-icon' href='{{ asset ('admin/img/favicon.ico')}}' />
+
+  {{-- Font awesome --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -46,12 +49,9 @@
           
           
             <li class="dropdown">
-              
-              
-              <a href="auth-login.html" class="dropdown-item has-icon text-danger"> 
-                <i style="font-size: 30px;" class="fas fa-sign-out-alt"></i>
+              <a href="{{ route('logout.page')}}" class="dropdown-item has-icon text-danger"> 
+                <i style="font-size: 30px" class="fa-solid fa-arrow-right-from-bracket"></i>
               </a>
-            
             </li>
         </ul>
       </nav>

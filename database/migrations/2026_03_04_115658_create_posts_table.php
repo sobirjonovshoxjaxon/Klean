@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('short_content');
             $table->text('content');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

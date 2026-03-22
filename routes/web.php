@@ -14,7 +14,7 @@ Route::get('/', function () {
 Route::get('/',[PageController::class, 'index'])->name('index.page');
 Route::get('/about',[PageController::class, 'about'])->name('about.page');
 Route::get('/blog',[PageController::class, 'blog'])->name('blog.page');
-Route::get('/blog/detail',[PageController::class, 'blogDetail'])->name('blogdetail.page');
+Route::get('/blog/detail/{post}',[PageController::class, 'blogDetail'])->name('blogdetail.page');
 Route::get('/contact',[PageController::class, 'contact'])->name('contact.page');
 Route::get('/service',[PageController::class, 'service'])->name('service.page');
 Route::get('/project',[PageController::class, 'project'])->name('project.page');

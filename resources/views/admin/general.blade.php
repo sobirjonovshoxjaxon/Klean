@@ -77,11 +77,11 @@
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
-            <div class="row ">
+            {{-- <div class="row "> --}}
 
                 @yield('content')
 
-            </div>
+            {{-- </div> --}}
         </section>
         <div class="settingSidebar">
           <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>

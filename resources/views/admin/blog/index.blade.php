@@ -19,24 +19,30 @@
                           <th>Content</th>
                           <th colspan="3">Action</th>
                         </tr>
-
-                        <tr>
-                          <td>1</td>
-                          <td>Irwansyah Saputra</td>
-                          <td>Image image</td>
-                          <td>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</td>
-                          <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati iusto nostrum expedita repudiandae, eligendi sunt aut ducimus quae quibusdam. Sequi, provident asperiores incidunt dolorem earum labore soluta facilis sit dicta.</td>
-                          <td>
-                            <a href="" class="btn btn-primary">Show</a>
-                          </td>
-                          <td>
-                            <a href="" class="btn btn-warning">Edit</a>
-                          </td>
-                          <td>
-                            <a href="" class="btn btn-danger">Delete</a>
-                          </td>
+                        
+                        @foreach ($posts as $post)
+                          <tr>
+                            <td>{{ $post->id }}</td>
+                            <td>{{ $post->title }}</td>
+                            <td>
+                              <p>{{ $post->image}}</p>
+                              <img src="" alt="">
+                            </td>
+                            <td>{{ $post->short_content }}</td>
+                            <td>{{ $post->content }}</td>
+                            <td>
+                              <a href="{{ route('posts.show', ['post' => $post->id])}}" class="btn btn-primary">Show</a>
+                            </td>
+                            <td>
+                              <a href="" class="btn btn-warning">Edit</a>
+                            </td>
+                            <td>
+                              <a href="" class="btn btn-danger">Delete</a>
+                            </td>
                           
-                        </tr>
+                          </tr>
+                        @endforeach
+                        
                         
                       </table>
                     </div>

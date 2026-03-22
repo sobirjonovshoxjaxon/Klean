@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -12,11 +13,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        // $posts = DB::table('posts')->where('title', 'Sobirjonov Shoxjaxon')->get()->chunk(3);
-        // $posts = DB::table('posts')->count();
-        // dd($posts);
-        DB::table('posts')->get()->dd();
-        return view('admin.blog.index');
+        $posts = Post::all();
+        return view('admin.blog.index',compact('posts'));
     }
 
     /**
@@ -38,9 +36,9 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
-        //
+        return view('admin.blog.show',compact('post'));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class PageController extends Controller
 {
@@ -16,11 +17,16 @@ class PageController extends Controller
     }
 
     public function blog(){
-        return view('blog');
+
+        $posts = Post::all();
+        return view('blog',compact('posts'));
     }
 
-    public function blogDetail(){
-        return view('blogdetail');
+    public function blogDetail($post_id){
+
+        $post = Post::findOrFail($post_id);
+        
+        return view('blogdetail',compact('post'));
     }
 
     public function contact(){

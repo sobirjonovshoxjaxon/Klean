@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
+use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -13,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        
+        $posts = Post::latest()->paginate(3);
         return view('admin.blog.index',compact('posts'));
     }
 
@@ -28,9 +31,30 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+
+        // imageni validatsiyasi qo'y
+
+        // $path = $request->file('image')->store('post-photos'); # Agar public qilib imageni yuklaydigan bo'lsak buni biz brauzerda ko'ra olamiz
+        // $path2 = $request->file('image')->store('post-photos','local'); # Agar sekretni brauzer ko'rishi kerak bo'lmasa unda local qilamiz
+
+        if($request->hasFile('image')){
+
+            $fileName = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('post-photos', $fileName); // Agar rasm imina o'zini nomi orqali yuklansin desang shu yo'l bor
+        }
+        
+
+        $post = Post::create([
+
+            'title' => $request->title,
+            'image' => $path ?? 'avatar.jpg',
+            'short_content' => $request->short_content,
+            'content' => $request->content,
+        ]);
+
+        return to_route('posts.index');
     }
 
     /**
@@ -44,24 +68,51 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        //
+        return view('admin.blog.edit',compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+
+        if($request->hasFile('image')){
+
+            if(isset($post->image)){
+
+                Storage::delete($post->image);
+            }
+
+            $fileName = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('post-photos',$fileName);
+        }
+
+
+        $post->update([
+
+            'title' => $request->title,
+            'short_content' => $request->short_content,
+            'content' => $request->content,
+            'image' => $path ?? $post->image,
+        ]);
+
+        return to_route('posts.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+
+        if(isset($post->image)){
+            Storage::delete($post->image);
+        }
+        $post->delete();
+
+        return redirect()->back();
     }
 }

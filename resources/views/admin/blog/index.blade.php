@@ -25,8 +25,8 @@
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->title }}</td>
                             <td>
-                              <p>{{ $post->image}}</p>
-                              <img src="" alt="">
+                              {{-- <p>{{ $post->image}}</p> --}}
+                              <img style="width: 100px; height: 100px;" src="{{ asset('storage/'.$post->image) }}" alt="">
                             </td>
                             <td>{{ $post->short_content }}</td>
                             <td>{{ $post->content }}</td>
@@ -34,10 +34,16 @@
                               <a href="{{ route('posts.show', ['post' => $post->id])}}" class="btn btn-primary">Show</a>
                             </td>
                             <td>
-                              <a href="" class="btn btn-warning">Edit</a>
+                              <a href="{{ route('posts.edit', ['post' => $post->id])}}" class="btn btn-warning">Edit</a>
                             </td>
-                            <td>
-                              <a href="" class="btn btn-danger">Delete</a>
+                            <td> 
+                              <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="POST" onsubmit="return confirm('You Really want delete this post?')">
+                                @csrf 
+                                @method('DELETE')
+
+
+                                  <button type="submit" class="btn btn-danger">Delete</button>
+                              </form>
                             </td>
                           
                           </tr>
@@ -45,9 +51,11 @@
                         
                         
                       </table>
+
+                      {{ $posts->links('vendor.pagination.bootstrap-5') }}
                     </div>
                   </div>
-                  <div class="card-footer text-right">
+                  {{-- <div class="card-footer text-right">
                     <nav class="d-inline-block">
                       <ul class="pagination mb-0">
                         <li class="page-item disabled">
@@ -64,7 +72,7 @@
                         </li>
                       </ul>
                     </nav>
-                  </div>
+                  </div> --}}
                 </div>
             </div>
 

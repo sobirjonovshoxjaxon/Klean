@@ -27,10 +27,8 @@
                         </div>
 
                         <div class="mb-5">
-                            <div>
-                                {{ $post->image }} Bu rasm xozircha yuklanmagan
-                            </div>
-                            {{-- <img class="img-fluid rounded w-100 mb-4" src="{{ asset ('assets/img/carousel-1.jpg')}}" alt="Image"> --}}
+                            
+                            <img  class="img-fluid rounded w-100 mb-4" src="{{ asset ('storage/'.$post->image)}}" alt="Image">
 
 
                             <p>{{ $post->content }}</p>

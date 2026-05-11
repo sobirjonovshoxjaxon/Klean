@@ -16,7 +16,7 @@ class PostController extends Controller
     public function index()
     {
         
-        $posts = Post::latest()->paginate(3);
+        $posts = Post::latest()->paginate(10);
         return view('admin.blog.index',compact('posts'));
     }
 
@@ -34,7 +34,6 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
 
-        // imageni validatsiyasi qo'y
 
         // $path = $request->file('image')->store('post-photos'); # Agar public qilib imageni yuklaydigan bo'lsak buni biz brauzerda ko'ra olamiz
         // $path2 = $request->file('image')->store('post-photos','local'); # Agar sekretni brauzer ko'rishi kerak bo'lmasa unda local qilamiz

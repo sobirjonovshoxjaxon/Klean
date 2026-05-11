@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('image');
             $table->string('short_content');
             $table->text('content');
+            $table->integer('user_id')->default(1);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

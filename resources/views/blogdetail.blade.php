@@ -41,40 +41,34 @@
 
 
 
-                        {{-- Content Part --}}
+                        {{-- Comments Part --}}
+
                         <div class="mb-5">
-                            <h3 class="mb-4 section-title">3 Comments</h3>
-                            <div class="media mb-4">
-                                <img src="{{ asset ('assets/img/user.jpg')}}" alt="Image" class="img-fluid rounded-circle mr-3 mt-1" style="width: 45px;">
-                                <div class="media-body">
-                                    <h6>John Doe <small><i>01 Jan 2045 at 12:00pm</i></small></h6>
-                                    <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum clita, at tempor amet ipsum diam tempor sit.</p>
-                                    <button class="btn btn-sm btn-light">Reply</button>
-                                </div>
-                            </div>
-                            <div class="media mb-4">
-                                <img src="{{ asset ('assets/img/user.jpg')}}" alt="Image" class="img-fluid rounded-circle mr-3 mt-1" style="width: 45px;">
-                                <div class="media-body">
-                                    <h6>John Doe <small><i>01 Jan 2045 at 12:00pm</i></small></h6>
-                                    <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum clita, at tempor amet ipsum diam tempor sit.</p>
-                                    <button class="btn btn-sm btn-light">Reply</button>
-                                    <div class="media mt-4">
-                                        <img src="{{ asset ('assets/img/user.jpg')}}" alt="Image" class="img-fluid rounded-circle mr-3 mt-1"
-                                            style="width: 45px;">
-                                        <div class="media-body">
-                                            <h6>John Doe <small><i>01 Jan 2045 at 12:00pm</i></small></h6>
-                                            <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum clita, at tempor amet ipsum diam tempor sit.</p>
-                                            <button class="btn btn-sm btn-light">Reply</button>
-                                        </div>
+                            <h3 class="mb-4 section-title">{{ $post->comments()->count(); }}  Comments</h3>
+
+                            @foreach ($post->comments as $comment)
+                                
+                                <div class="media mb-4">
+                                    <img src="{{ asset ('assets/img/user.jpg')}}" alt="Image" class="img-fluid rounded-circle mr-3 mt-1" style="width: 45px;">
+                                    <div class="media-body">
+                                        <h6>{{ $comment->user->name}} <small><i>{{ $comment->created_at }}</i></small></h6>
+                                        <p>{{ $comment->body }}</p>
+                                        <button class="btn btn-sm btn-light">Reply</button>
                                     </div>
                                 </div>
-                            </div>
+
+                            @endforeach
+                          
                         </div>
 
                         <div class="bg-light rounded p-5">
                             <h3 class="mb-4 section-title">Leave a comment</h3>
-                            <form>
-                                <div class="form-row">
+                            <form action="{{ route('comments.store')}}" method="POST">
+                                @csrf 
+
+                                <input type="hidden" name="post_id" value="{{ $post->id }}">
+
+                                {{-- <div class="form-row">
                                     <div class="form-group col-sm-6">
                                         <label for="name">Name *</label>
                                         <input type="text" class="form-control" id="name">
@@ -87,14 +81,16 @@
                                 <div class="form-group">
                                     <label for="website">Website</label>
                                     <input type="url" class="form-control" id="website">
-                                </div>
+                                </div> --}}
 
                                 <div class="form-group">
                                     <label for="message">Message *</label>
-                                    <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                    <textarea id="message" cols="30" rows="5" class="form-control" name="body"></textarea>
                                 </div>
+
+
                                 <div class="form-group mb-0">
-                                    <input type="submit" value="Leave Comment" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary">Leave Comment</button>
                                 </div>
                             </form>
                         </div>
@@ -121,26 +117,17 @@
                         <div class="mb-5">
                             <h3 class="mb-4 section-title">Categories</h3>
                             <ul class="list-inline m-0">
-                                <li class="mb-1 py-2 px-3 bg-light d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i class="fa fa-angle-right text-secondary mr-2"></i>Web Design</a>
-                                    <span class="badge badge-primary badge-pill">150</span>
-                                </li>
-                                <li class="mb-1 py-2 px-3 bg-light d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i class="fa fa-angle-right text-secondary mr-2"></i>Web Development</a>
-                                    <span class="badge badge-primary badge-pill">131</span>
-                                </li>
-                                <li class="mb-1 py-2 px-3 bg-light d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i class="fa fa-angle-right text-secondary mr-2"></i>Online Marketing</a>
-                                    <span class="badge badge-primary badge-pill">78</span>
-                                </li>
-                                <li class="mb-1 py-2 px-3 bg-light d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i class="fa fa-angle-right text-secondary mr-2"></i>Keyword Research</a>
-                                    <span class="badge badge-primary badge-pill">56</span>
-                                </li>
-                                <li class="py-2 px-3 bg-light d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i class="fa fa-angle-right text-secondary mr-2"></i>Email Marketing</a>
-                                    <span class="badge badge-primary badge-pill">98</span>
-                                </li>
+
+                                @foreach ($categories as $category)
+
+                                    <li class="mb-1 py-2 px-3 bg-light d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#"><i class="fa fa-angle-right text-secondary mr-2"></i>{{ $category->category }}</a>
+                                        <span class="badge badge-primary badge-pill">150</span>
+                                    </li>
+
+                                @endforeach
+                               
+                              
                             </ul>
                         </div>
                         <div class="mb-5">

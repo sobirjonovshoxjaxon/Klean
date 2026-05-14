@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
 
 class PageController extends Controller
 {
@@ -25,8 +26,9 @@ class PageController extends Controller
     public function blogDetail($post_id){
 
         $post = Post::findOrFail($post_id);
+        $categories = Category::all();
         
-        return view('blogdetail',compact('post'));
+        return view('blogdetail',compact('post','categories'));
     }
 
     public function contact(){

@@ -16,6 +16,8 @@
                           <th>Title</th>
                           <th>Image</th>
                           <th>Short_content</th>
+                          <th>Category</th>
+                          {{-- <th>Tags</th> --}}
                           <th>Content</th>
                           <th colspan="3">Action</th>
                         </tr>
@@ -29,6 +31,7 @@
                               <img style="width: 100px; height: 100px;" src="{{ asset('storage/'.$post->image) }}" alt="">
                             </td>
                             <td>{{ $post->short_content }}</td>
+                            <td>{{ $post->category->category }}</td>
                             <td>{{ Str::limit($post->content,100) }}</td>
                             <td>
                               <a href="{{ route('posts.show', ['post' => $post->id])}}" class="btn btn-primary">Show</a>

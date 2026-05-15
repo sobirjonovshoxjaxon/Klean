@@ -51,6 +51,20 @@
                                 @enderror
                             </div>
 
+
+                            <div class="form-group">
+                                <td>
+                                    <label>Categories</label>
+
+                                    <select name="category_id">
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                            </div>
+                           
+
                             <div class="form-group">
                                 <label for="">Content</label>
                                 <textarea  class="form-control" id="" cols="40" rows="10" name="content" placeholder="Content">{{ old('content') }}</textarea>

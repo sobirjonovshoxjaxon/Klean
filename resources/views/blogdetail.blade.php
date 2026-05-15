@@ -23,6 +23,11 @@
                                 <span class="text-primary px-2">|</span>
                                 <a class="text-secondary text-uppercase font-weight-medium" href="">{{ $post->created_at }}</a>
                             </div>
+
+                            <div class="mb-2">
+                                <a style="text-decoration: none;" class="bg-secondary text-white font-weight-medium p-2 rounded" href="">{{ $post->category->category }}</a>
+
+                            </div>
                             <h1 class="section-title mb-3">{{ $post->title }}</h1>
                         </div>
 

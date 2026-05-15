@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Category;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -25,7 +27,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.blog.create');
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('admin.blog.create',compact('categories','tags'));
     }
 
     /**
@@ -34,7 +38,7 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
 
-
+        dd($request->all());
         // $path = $request->file('image')->store('post-photos'); # Agar public qilib imageni yuklaydigan bo'lsak buni biz brauzerda ko'ra olamiz
         // $path2 = $request->file('image')->store('post-photos','local'); # Agar sekretni brauzer ko'rishi kerak bo'lmasa unda local qilamiz
 
@@ -47,6 +51,8 @@ class PostController extends Controller
 
         $post = Post::create([
 
+            'user_id' => 1,
+            'category_id' => $request->category_id,
             'title' => $request->title,
             'image' => $path ?? 'avatar.jpg',
             'short_content' => $request->short_content,

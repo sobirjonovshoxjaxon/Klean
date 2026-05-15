@@ -18,8 +18,11 @@ class UserSeeder extends Seeder
             
             'name' => 'Shoxjaxon',
             'password' => '87654321',
+            'image' => 'user-photos/14.jpg',
             'email' => 'shoxjaxonsobirjonov77@gmail.com',
         ]);
+
+        User::factory()->count(5)->create();
 
     }
 }

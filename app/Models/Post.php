@@ -17,6 +17,7 @@ class Post extends Model
         'short_content',
         'content',
         'user_id',
+        'category_id',
     ];
 
 

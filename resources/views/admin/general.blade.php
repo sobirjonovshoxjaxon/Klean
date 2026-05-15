@@ -79,11 +79,11 @@
 
 
             <li class="dropdown">
-              <a href="" class="nav-link"><i data-feather="monitor"></i><span>Category Table</span></a>
+              <a href="{{ route('categories.index')}}" class="nav-link"><i data-feather="monitor"></i><span>Category Table</span></a>
             </li>
             
             <li class="dropdown">
-              <a href="" class="nav-link"><i data-feather="monitor"></i><span>Tag Table</span></a>
+              <a href="{{ route('tags.index') }}" class="nav-link"><i data-feather="monitor"></i><span>Tag Table</span></a>
             </li>  
         </aside>
       </div>

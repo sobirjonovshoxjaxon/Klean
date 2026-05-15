@@ -4,12 +4,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 //PageController routes 
 Route::get('/',[PageController::class, 'index'])->name('index.page');
@@ -25,6 +22,9 @@ Route::post('/enter/adminpanel',[AdminController::class, 'IsUser'])->name('is_us
 Route::get('/admin/index',[AdminController::class, 'adminIndex'])->name('admin.index');
 Route::get('/admin/login',[AdminController::class, 'loginPage'])->name('login.page');
 Route::get('/logout',[AdminController::class, 'logout'])->name('logout.page');
+
+//UserController 
+Route::resource('users', UserController::class);
 
 //PostController 
 Route::resource('/posts', PostController::class);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -25,26 +26,20 @@ class AdminController extends Controller
     public function isUser(Request $request){
 
         $request->validate([
-
-            'email'=>'required',
-            'password'=>'required'
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
-        $user = User::where([
+        $user = User::where('email', $request->email)->first();
 
-            'email' => $request['email'],
-            'password' => $request['password'],
-
-        ])->first();
-
-
-        if($user){
+        if($user && Hash::check($request->password, $user->password)) {
 
             return view('admin.index');
+
         }else{
 
-            return redirect()->back();
-        }
+        return redirect()->back()->with('error', 'Email yoki password xato');
+    }
         
     }
 

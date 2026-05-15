@@ -72,6 +72,19 @@
             <li class="dropdown">
               <a href="{{ route('posts.index')}}" class="nav-link"><i data-feather="monitor"></i><span>Blog Table</span></a>
             </li>  
+
+            <li class="dropdown">
+              <a href="{{ route('users.index')}}" class="nav-link"><i data-feather="monitor"></i><span>User Table</span></a>
+            </li>  
+
+
+            <li class="dropdown">
+              <a href="" class="nav-link"><i data-feather="monitor"></i><span>Category Table</span></a>
+            </li>
+            
+            <li class="dropdown">
+              <a href="" class="nav-link"><i data-feather="monitor"></i><span>Tag Table</span></a>
+            </li>  
         </aside>
       </div>
       <!-- Main Content -->

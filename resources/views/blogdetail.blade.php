@@ -127,16 +127,13 @@
 
                                     <li class="mb-1 py-2 px-3 bg-light d-flex justify-content-between align-items-center">
                                         <a class="text-dark" href="#"><i class="fa fa-angle-right text-secondary mr-2"></i>{{ $category->category }}</a>
-                                        <span class="badge badge-primary badge-pill">150</span>
+                                        <span class="badge badge-primary badge-pill">{{ $category->posts()->count(); }}</span>
                                     </li>
 
                                 @endforeach
                                
                               
                             </ul>
-                        </div>
-                        <div class="mb-5">
-                            <img src="{{ asset ('assets/img/blog-1.jpg')}}" alt="" class="img-fluid rounded">
                         </div>
                         <div class="mb-5">
                             <h3 class="mb-4 section-title">Recent Post</h3>
@@ -197,28 +194,15 @@
                             </div>
                         </div>
                         <div class="mb-5">
-                            <img src="{{ asset ('assets/img/blog-2.jpg')}}" alt="" class="img-fluid rounded">
-                        </div>
-                        <div class="mb-5">
                             <h3 class="mb-4 section-title">Tag Cloud</h3>
                             <div class="d-flex flex-wrap m-n1">
-                                <a href="" class="btn btn-outline-secondary m-1">Design</a>
-                                <a href="" class="btn btn-outline-secondary m-1">Development</a>
-                                <a href="" class="btn btn-outline-secondary m-1">Marketing</a>
-                                <a href="" class="btn btn-outline-secondary m-1">SEO</a>
-                                <a href="" class="btn btn-outline-secondary m-1">Writing</a>
-                                <a href="" class="btn btn-outline-secondary m-1">Consulting</a>
+
+                                @foreach ($post->tags as $tag)
+                                
+                                    <a href="" class="btn btn-outline-secondary m-1">{{ $tag->tag }}</a>
+                                @endforeach
+                                
                             </div>
-                        </div>
-                        <div class="mb-5">
-                            <img src="{{ asset ('assets/img/blog-3.jpg')}}" alt="" class="img-fluid rounded">
-                        </div>
-                        <div>
-                            <h3 class="mb-4 section-title">Plain Text</h3>
-                            Aliquyam sed lorem stet diam dolor sed ut sit. Ut sanctus erat ea est aliquyam dolor et. Et no
-                            consetetur eos labore ea erat voluptua et. Et aliquyam dolore sed erat. Magna sanctus sed eos
-                            tempor
-                            rebum dolor, tempor takimata clita sit et elitr ut eirmod.
                         </div>
                     </div>
                 </div>

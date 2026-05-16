@@ -37,9 +37,10 @@
                             </div>
                         </div>
                         <div class="d-flex mb-2">
-                            <a class="text-secondary text-uppercase font-weight-medium" href="">Admin</a>
-                            <span class="text-primary px-2">|</span>
-                            <a class="text-secondary text-uppercase font-weight-medium" href="">Cleaning</a>
+                            @foreach ($post->tags as $tag)
+                                <a class="text-secondary text-uppercase font-weight-medium" href="">{{ $tag->tag }}</a>
+                                <span class="text-primary px-2">|</span>
+                            @endforeach
                         </div>
                          <div class="d-flex mb-2">
                             <a class="text-danger text-uppercase font-weight-medium" href="">{{ $post->category->category }}</a>
@@ -51,8 +52,8 @@
                 @endforeach
                
                 
-
-                <div class="col-12">
+                    {{ $posts->links('vendor.pagination.bootstrap-5')}}
+                {{-- <div class="col-12">
                     <nav aria-label="Page navigation">
                       <ul class="pagination pagination-lg justify-content-center mb-0">
                         <li class="page-item disabled">
@@ -72,7 +73,7 @@
                         </li>
                       </ul>
                     </nav>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

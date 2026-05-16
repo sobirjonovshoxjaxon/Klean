@@ -14,4 +14,11 @@ class Tag extends Model
 
         'tag',
     ];
+
+
+    // Modal Relationship 
+    
+    public function posts(){
+        return $this->belongsToMany(Post::class);
+    }
 }

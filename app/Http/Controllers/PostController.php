@@ -37,8 +37,7 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-
-        dd($request->all());
+        // dd($request->all());
         // $path = $request->file('image')->store('post-photos'); # Agar public qilib imageni yuklaydigan bo'lsak buni biz brauzerda ko'ra olamiz
         // $path2 = $request->file('image')->store('post-photos','local'); # Agar sekretni brauzer ko'rishi kerak bo'lmasa unda local qilamiz
 
@@ -58,6 +57,15 @@ class PostController extends Controller
             'short_content' => $request->short_content,
             'content' => $request->content,
         ]);
+
+        // Creating Tag
+        if(isset($request->tags)){
+
+            foreach($request->tags as $tag){
+                $post->tags()->attach($tag);
+            }
+           
+        }
 
         return to_route('posts.index');
     }

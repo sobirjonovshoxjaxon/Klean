@@ -64,6 +64,18 @@
                                 </td>
                             </div>
                            
+                            <div class="form-group">
+                                <td>
+                                    <label>Tags</label>
+
+                                    <select name="tags[]" multiple>
+                                        @foreach ($tags as $tag)
+                                            <option value="{{ $tag->id }}">{{ $tag->tag }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                            </div>
+                           
 
                             <div class="form-group">
                                 <label for="">Content</label>

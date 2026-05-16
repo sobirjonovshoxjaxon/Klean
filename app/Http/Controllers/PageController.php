@@ -19,7 +19,7 @@ class PageController extends Controller
 
     public function blog(){
 
-        $posts = Post::all();
+        $posts = Post::paginate(9);
         return view('blog',compact('posts'));
     }
 

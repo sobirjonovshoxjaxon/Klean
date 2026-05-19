@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -11,6 +12,43 @@ class AdminController extends Controller
 {
     public function adminIndex(){
         return view('admin.index');
+    }
+
+
+    public function adminRegister(){
+
+        return view('admin.register');
+    }
+
+    public function register_store(Request $request){
+        
+        $request->validate([
+
+            'name'=>'required|max:255',
+            'email'=>'required|unique:users,email',
+            'image'=>'required|mimes:jpg,png',
+            'password'=>'required|max:20|min:8',
+            'password_confirmation'=>'required|same:password',
+        ]);
+
+        if($request->hasFile('image')){
+
+            $fileName = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('user-photos',$fileName);
+        }
+
+       
+        $user = User::create([
+
+            'name' => $request->name,
+            'email' => $request->email,
+            'image' => $path,
+            'password' => $request->password,
+        ]);
+
+        Auth::login($user);
+
+        return redirect('/');
     }
 
     public function loginPage(){
@@ -23,25 +61,22 @@ class AdminController extends Controller
         return to_route('login.page');
     }
 
-    public function isUser(Request $request){
-
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required'
+    public function authenticate(Request $request): RedirectResponse
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
-
-        $user = User::where('email', $request->email)->first();
-
-        if($user && Hash::check($request->password, $user->password)) {
-
-            return view('admin.index');
-
-        }else{
-
-        return redirect()->back()->with('error', 'Email yoki password xato');
+ 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            return redirect()->intended('/admin/index');
+        }
+ 
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
-        
-    }
-
     
 }

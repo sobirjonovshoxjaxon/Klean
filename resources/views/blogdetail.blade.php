@@ -54,7 +54,7 @@
                             @foreach ($post->comments as $comment)
                                 
                                 <div class="media mb-4">
-                                    <img src="{{ asset ('assets/img/user.jpg')}}" alt="Image" class="img-fluid rounded-circle mr-3 mt-1" style="width: 45px;">
+                                    <img src="{{ asset ('storage/'.$comment->user->image) }}" alt="Image" class="img-fluid rounded-circle mr-3 mt-1" style="width: 45px;">
                                     <div class="media-body">
                                         <h6>{{ $comment->user->name}} <small><i>{{ $comment->created_at }}</i></small></h6>
                                         <p>{{ $comment->body }}</p>
@@ -68,43 +68,52 @@
 
                         <div class="bg-light rounded p-5">
                             <h3 class="mb-4 section-title">Leave a comment</h3>
-                            <form action="{{ route('comments.store')}}" method="POST">
-                                @csrf 
 
-                                <input type="hidden" name="post_id" value="{{ $post->id }}">
+                            @auth
+                                
+                                <form action="{{ route('comments.store')}}" method="POST">
+                                    @csrf 
 
-                                {{-- <div class="form-row">
-                                    <div class="form-group col-sm-6">
-                                        <label for="name">Name *</label>
-                                        <input type="text" class="form-control" id="name">
+                                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+
+                                    {{-- <div class="form-row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="name">Name *</label>
+                                            <input type="text" class="form-control" id="name">
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label for="email">Email *</label>
+                                            <input type="email" class="form-control" id="email">
+                                        </div>
                                     </div>
-                                    <div class="form-group col-sm-6">
-                                        <label for="email">Email *</label>
-                                        <input type="email" class="form-control" id="email">
+                                    <div class="form-group">
+                                        <label for="website">Website</label>
+                                        <input type="url" class="form-control" id="website">
+                                    </div> --}}
+
+                                    <div class="form-group">
+                                        <label for="message">Message *</label>
+                                        <textarea id="message" cols="30" rows="5" class="form-control" name="body"></textarea>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="website">Website</label>
-                                    <input type="url" class="form-control" id="website">
-                                </div> --}}
-
-                                <div class="form-group">
-                                    <label for="message">Message *</label>
-                                    <textarea id="message" cols="30" rows="5" class="form-control" name="body"></textarea>
-                                </div>
 
 
-                                <div class="form-group mb-0">
-                                    <button type="submit" class="btn btn-primary">Leave Comment</button>
-                                </div>
-                            </form>
+                                    <div class="form-group mb-0">
+                                        <button type="submit" class="btn btn-primary">Leave Comment</button>
+                                    </div>
+                                </form>
+
+                                @else
+                                    Izoh yozish uchun kirishga bosing! 
+                                    <a href="{{ route('register.page')}}" class="btn btn-primary" >Kirish</a>
+
+                            @endauth
                         </div>
                     </div>
 
                     <div class="col-lg-4 mt-5 mt-lg-0">
                         <div class="d-flex flex-column text-center bg-secondary rounded mb-5 py-5 px-4">
                             <img src="{{ asset ('assets/img/user.jpg')}}" class="img-fluid rounded-circle mx-auto mb-3" style="width: 100px;">
-                            <h3 class="text-white mb-3">John Doe</h3>
+                            <h3 class="text-white mb-3">{{ $post->user->name }}</h3>
                             <p class="text-white m-0">Conset elitr erat vero dolor ipsum et diam, eos dolor lorem ipsum,
                                 ipsum
                                 ipsum sit no ut est. Guber ea ipsum erat kasd amet est elitr ea sit.</p>

@@ -89,7 +89,13 @@
                             </div>
                             <a href="{{ route('contact.page')}}" class="nav-item nav-link">Contact</a>
                         </div>
-                        <a href="{{ route('login.page')}}" class="btn btn-primary mr-3 d-none d-lg-block">Login</a>
+
+                        @auth
+                            <a href="" class="btn btn-primary mr-3 d-none d-lg-block">{{ auth()->user()->name }}</a>
+                        @else
+                            <a href="{{ route('login.page')}}" class="btn btn-primary mr-3 d-none d-lg-block">Login</a>
+                            <a href="{{ route('register.page')}}" class="btn btn-primary mr-3 d-none d-lg-block">Register</a>
+                        @endauth
                     </div>
                 </nav>
             </div>

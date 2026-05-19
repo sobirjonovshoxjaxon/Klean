@@ -62,29 +62,36 @@
                 class="logo-name">Otika</span>
             </a>
           </div>
-          <ul class="sidebar-menu">
-            <li class="menu-header">Main</li>
 
-            <li class="dropdown active">
-              <a href="index.html" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
-            </li>
+          @auth 
+            <ul class="sidebar-menu">
+              <li class="menu-header">Main</li>
 
-            <li class="dropdown">
-              <a href="{{ route('posts.index')}}" class="nav-link"><i data-feather="monitor"></i><span>Blog Table</span></a>
-            </li>  
+              <li class="dropdown active">
+                <a href="index.html" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+              </li>
 
-            <li class="dropdown">
-              <a href="{{ route('users.index')}}" class="nav-link"><i data-feather="monitor"></i><span>User Table</span></a>
-            </li>  
+              <li class="dropdown">
+                <a href="{{ route('posts.index')}}" class="nav-link"><i data-feather="monitor"></i><span>Blog Table</span></a>
+              </li>  
+
+              <li class="dropdown">
+                <a href="{{ route('users.index')}}" class="nav-link"><i data-feather="monitor"></i><span>User Table</span></a>
+              </li>  
 
 
-            <li class="dropdown">
-              <a href="{{ route('categories.index')}}" class="nav-link"><i data-feather="monitor"></i><span>Category Table</span></a>
-            </li>
-            
-            <li class="dropdown">
-              <a href="{{ route('tags.index') }}" class="nav-link"><i data-feather="monitor"></i><span>Tag Table</span></a>
-            </li>  
+              <li class="dropdown">
+                <a href="{{ route('categories.index')}}" class="nav-link"><i data-feather="monitor"></i><span>Category Table</span></a>
+              </li>
+              
+              <li class="dropdown">
+                <a href="{{ route('tags.index') }}" class="nav-link"><i data-feather="monitor"></i><span>Tag Table</span></a>
+              </li>  
+
+            </ul>
+          @endauth
+
+          
         </aside>
       </div>
       <!-- Main Content -->

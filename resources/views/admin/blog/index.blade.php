@@ -33,21 +33,26 @@
                             <td>{{ $post->short_content }}</td>
                             <td>{{ $post->category->category }}</td>
                             <td>{{ Str::limit($post->content,100) }}</td>
-                            <td>
-                              <a href="{{ route('posts.show', ['post' => $post->id])}}" class="btn btn-primary">Show</a>
-                            </td>
-                            <td>
-                              <a href="{{ route('posts.edit', ['post' => $post->id])}}" class="btn btn-warning">Edit</a>
-                            </td>
-                            <td> 
-                              <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="POST" onsubmit="return confirm('You Really want delete this post?')">
-                                @csrf 
-                                @method('DELETE')
 
 
-                                  <button type="submit" class="btn btn-danger">Delete</button>
-                              </form>
-                            </td>
+                            @canany(['update', 'delete'], $post)
+                                
+                              <td>
+                                <a href="{{ route('posts.show', ['post' => $post->id])}}" class="btn btn-primary">Show</a>
+                              </td>
+                              <td>
+                                <a href="{{ route('posts.edit', ['post' => $post->id])}}" class="btn btn-warning">Edit</a>
+                              </td>
+                              <td> 
+                                <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="POST" onsubmit="return confirm('You Really want delete this post?')">
+                                  @csrf 
+                                  @method('DELETE')
+
+
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                              </td>
+                            @endcanany
                           
                           </tr>
                         @endforeach

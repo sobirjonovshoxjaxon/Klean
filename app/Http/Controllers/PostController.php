@@ -9,9 +9,12 @@ use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -50,7 +53,7 @@ class PostController extends Controller
 
         $post = Post::create([
 
-            'user_id' => 1,
+            'user_id' => Auth::id(),
             'category_id' => $request->category_id,
             'title' => $request->title,
             'image' => $path ?? 'avatar.jpg',
@@ -83,6 +86,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        Gate::authorize('update', $post);
+
         return view('admin.blog.edit',compact('post'));
     }
 

@@ -32,7 +32,7 @@ class CommentController extends Controller
 
             'body' => $request->body,
             'post_id' => $request->post_id,
-            'user_id' => 1, // we will change it!
+            'user_id' => auth()->id(), // we will change it!
         ]);
 
         return redirect()->back();

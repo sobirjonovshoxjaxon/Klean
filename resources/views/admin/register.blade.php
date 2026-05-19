@@ -27,35 +27,62 @@
           <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
             <div class="card card-primary">
               <div class="card-header">
-                <h4>Login</h4>
+                <h4>Register</h4>
               </div>
               <div class="card-body">
 
-                <form method="POST" action="{{ route('is_user')}}" class="needs-validation" novalidate="">
+                <form action="{{ route('register.store')}}" class="needs-validation"  method="POST" enctype="multipart/form-data">
                   @csrf 
 
+                   {{-- Name --}}
                   <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control" name="email" tabindex="1" autofocus>
-                    <div class="invalid-feedback">
-                      Please fill in your email
-                    </div>
+                        <label for="name">Name</label>
+                        <input id="name" type="text" class="form-control" name="name" tabindex="1" autofocus>
+                        <div class="invalid-feedback">
+                        Please fill in your name
+                        </div>
                   </div>
 
+                  {{-- Email --}}
+                  <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" class="form-control" name="email" tabindex="1" autofocus>
+                        <div class="invalid-feedback">
+                        Please fill in your email
+                        </div>
+                  </div>
 
+                  {{-- Image --}}
+                  <div class="form-group">
+                        <label for="image">Image For your Profile</label>
+                        <input id="image" type="file" class="form-control" name="image" tabindex="1" autofocus>
+                        <div class="invalid-feedback">
+                            Please fill in your email
+                        </div>
+                  </div>
+
+                  {{-- Password --}}
                   <div class="form-group">
 
                     <div class="d-block">
                       <label for="password" class="control-label">Password</label>
-                      <div class="float-right">
-                        <a href="auth-forgot-password.html" class="text-small">
-                          Forgot Password?
-                        </a>
-                      </div>
-
                     </div>
 
                     <input id="password" type="password" class="form-control" name="password">
+                    <div class="invalid-feedback">
+                      please fill in your password
+                    </div>
+
+                  </div>
+
+                  {{-- Password Confirmation--}}
+                  <div class="form-group">
+
+                    <div class="d-block">
+                      <label for="password" class="control-label">Password Confirmation</label>
+                    </div>
+
+                    <input id="password" type="password" class="form-control" name="password_confirmation">
                     <div class="invalid-feedback">
                       please fill in your password
                     </div>
@@ -74,7 +101,7 @@
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                      Login
+                      Register
                     </button>
                   </div>
 
@@ -98,7 +125,7 @@
               </div>
             </div>
             <div class="mt-5 text-muted text-center">
-              Don't have an account? <a href="{{ route('register.page')}}">Create One</a>
+              <a href="{{ route('login.page')}}">Login</a>
             </div>
           </div>
         </div>
